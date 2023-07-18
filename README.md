@@ -1,1 +1,1 @@
-# Handwritten-Character-Recognition-using-EMNIST
+# Handwritten Character Recognition using EMNIST
