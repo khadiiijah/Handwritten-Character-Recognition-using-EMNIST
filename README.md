@@ -108,14 +108,14 @@ print("Accuracy:", accuracy_nb)
 print("Precision:", precision_nb)
 print("Recall:", recall_nb)
 print("F1 Score:", f1_nb)
-```
 
 Accuracy: 0.2762917933130699
 Precision: 0.42236357411110537
 Recall: 0.2762917933130699
 F1 Score: 0.24116615965406896
-
+```
 ## Support Vector Machine (SVM)
+```python
 ### Create an SVM model
 svm_model = SVC(kernel='rbf', C=1.0, gamma='scale', random_state=42)
 
@@ -141,21 +141,23 @@ Accuracy: 0.8436930091185411
 Precision: 0.8449859853316789
 Recall: 0.8436930091185411
 F1 Score: 0.8419189462167611
-
+```
 ## Models Saving
 Saving the trained models allows for its reuse and deployment in various applications without the need for retraining. 
 This ensures consistent and efficient utilization of the trained models.
-
+```python
 joblib.dump(rf_model, './saved/random_forest.pkl')
 joblib.dump(knn_model, './saved/knn.pkl')
 joblib.dump(nb_model, './saved/naive_bayes.pkl')
 joblib.dump(svm_model, './saved/svm.pkl')
-
+```
+```python
 ['./saved/svm.pkl']
-
+```
 # Convolutional Neural Network (CNN)
 This section demonstrates the implementation of a Convolutional Neural Network (CNN) for the recognition of handwritten characters. CNNs have shown exceptional performance in image recognition tasks, making them well-suited for character recognition from image data.
 
+```python
 cnn_model = Sequential()
 
 cnn_model.add(layers.Conv2D(filters=32, kernel_size=(5,5), padding='same', activation='relu', input_shape=(28, 28, 1)))
@@ -174,6 +176,7 @@ cnn_model.add(layers.Dropout(0.2))
 cnn_model.add(layers.Dense(number_of_classes, activation='softmax'))
 
 cnn_model.summary()
+```
 ## Model Compilation
 The CNN model is compiled with the categorical cross-entropy loss function, the Adam optimizer, and accuracy as the evaluation metric. The Adam optimizer efficiently adapts the learning rate for faster convergence.
 
@@ -187,6 +190,7 @@ ReduceLROnPlateau: This callback reduces the learning rate if validation loss pl
 ## Model Fitting
 The CNN model is trained on the training data for 20 epochs with a batch size of 32. The training progress is monitored using the validation data provided during model fitting. The callbacks are employed to control the training process and achieve the best possible model for the task.
 
+```python
 ### Compile the CNN model with categorical cross-entropy loss, the specified optimizer, and accuracy metric
 cnn_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
@@ -200,6 +204,7 @@ mcp_save = ModelCheckpoint('./saved/cnn.h5', save_best_only=True, monitor='val_l
 RLP = ReduceLROnPlateau(monitor='val_loss', patience=3, factor=0.2, min_lr=0.0001)
 
 ### Model Fitting
-history = cnn_model.fit(X_train, y_train, epochs=20, batch_size, verbose=1, validation_data=(X_test, y_test), callbacks=[mcp_save, early_stopping, RLP]) 
+history = cnn_model.fit(X_train, y_train, epochs=20, batch_size, verbose=1, validation_data=(X_test, y_test), callbacks=[mcp_save, early_stopping, RLP])
+```
 
 The CNN model achieved an accuracy of approximately 88.92% on the validation set after training for 9 epochs. The early stopping callback prevented further training as the validation loss reached a limit, ensuring the model's optimal performance and avoiding overfitting.
