@@ -114,6 +114,7 @@ Precision: 0.42236357411110537
 Recall: 0.2762917933130699
 F1 Score: 0.24116615965406896
 ```
+
 ## Support Vector Machine (SVM)
 ```python
 ### Create an SVM model
