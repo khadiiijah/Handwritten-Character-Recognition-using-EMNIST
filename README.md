@@ -11,9 +11,10 @@ https://www.kaggle.com/datasets/crawford/emnist
 5. Pandas
 6. Matplotlib
 7. TensorFlow
-8. OpenCV 
-9. Keras
-10. Gradio
+8. Keras
+9. OpenCV 
+11. Gradio
+    
 ## Preprocessing Steps
 The dataset undergoes several preprocessing steps to prepare it for model training and testing. These steps include:
     • Verification of missing values, duplication removal, and grayscale value range validation
@@ -27,6 +28,7 @@ Then we added extra preprocessing steps for our deep learning model:
 Several machine learning algorithms are employed for character recognition. 
 The following algorithms are implemented with their respective source code and accuracy scores:
 ## Random Forest
+```python
 ### Create the Random Forest model
 rf_model = RandomForestClassifier(n_estimators=100)
 
@@ -47,13 +49,15 @@ print("Accuracy:", accuracy_rf)
 print("Precision:", precision_rf)
 print("Recall:", recall_rf)
 print("F1 Score:", f1_rf)
-
+```
 Accuracy: 0.8118541033434651
 Precision: 0.8119493522475134
 Recall: 0.8118541033434651
 F1 Score: 0.8098937096654448
 
 ## K-Nearest Neighbors (KNN)
+
+```python
 ### Create a KNN classifier with k=5
 knn_model = KNeighborsClassifier(n_neighbors=5)
 
@@ -74,13 +78,15 @@ print("Accuracy:", accuracy_knn)
 print("Precision:", precision_knn)
 print("Recall:", recall_knn)
 print("F1 Score:", f1_knn)
-
+```
 Accuracy: 0.78290273556231
 Precision: 0.7931620867778456
 Recall: 0.78290273556231
 F1 Score: 0.7822322350312396
 
 ## Naive Bayes
+
+```python
 ### Create a KNN classifier with k=5
 nb_model = GaussianNB()
 
@@ -101,6 +107,7 @@ print("Accuracy:", accuracy_nb)
 print("Precision:", precision_nb)
 print("Recall:", recall_nb)
 print("F1 Score:", f1_nb)
+```
 
 Accuracy: 0.2762917933130699
 Precision: 0.42236357411110537
