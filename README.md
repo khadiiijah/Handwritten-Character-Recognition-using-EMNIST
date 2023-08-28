@@ -49,12 +49,12 @@ print("Accuracy:", accuracy_rf)
 print("Precision:", precision_rf)
 print("Recall:", recall_rf)
 print("F1 Score:", f1_rf)
-```
+
 Accuracy: 0.8118541033434651
 Precision: 0.8119493522475134
 Recall: 0.8118541033434651
 F1 Score: 0.8098937096654448
-
+```
 ## K-Nearest Neighbors (KNN)
 
 ```python
@@ -78,11 +78,12 @@ print("Accuracy:", accuracy_knn)
 print("Precision:", precision_knn)
 print("Recall:", recall_knn)
 print("F1 Score:", f1_knn)
-```
+
 Accuracy: 0.78290273556231
 Precision: 0.7931620867778456
 Recall: 0.78290273556231
 F1 Score: 0.7822322350312396
+```
 
 ## Naive Bayes
 
