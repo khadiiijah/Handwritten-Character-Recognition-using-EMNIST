@@ -29,22 +29,22 @@ Several machine learning algorithms are employed for character recognition.
 The following algorithms are implemented with their respective source code and accuracy scores:
 ## Random Forest
 ```python
-### Create the Random Forest model
+# Create the Random Forest model
 rf_model = RandomForestClassifier(n_estimators=100)
 
-### Train the model on your training set
+# Train the model on your training set
 rf_model.fit(X_train, y_train)
 
-### Predict the labels of your validation set
+# Predict the labels of your validation set
 y_pred_rf = rf_model.predict(X_test)
 
-### Calculate accuracy
+# Calculate accuracy
 accuracy_rf = accuracy_score(y_test, y_pred_rf)
 
-### Calculate precision, recall, and f1 score
+# Calculate precision, recall, and f1 score
 precision_rf, recall_rf, f1_rf, _ = precision_recall_fscore_support(y_test, y_pred_rf, average='weighted')
 
-### Print the evaluation metrics
+# Print the evaluation metrics
 print("Accuracy:", accuracy_rf)
 print("Precision:", precision_rf)
 print("Recall:", recall_rf)
@@ -58,22 +58,22 @@ F1 Score: 0.8098937096654448
 ## K-Nearest Neighbors (KNN)
 
 ```python
-### Create a KNN classifier with k=5
+# Create a KNN classifier with k=5
 knn_model = KNeighborsClassifier(n_neighbors=5)
 
-### Train the model on your training set
+# Train the model on your training set
 knn_model.fit(X_train, y_train)
 
-### Predict the labels of your validation set
+# Predict the labels of your validation set
 y_pred_knn = knn_model.predict(X_test)
 
-### Calculate accuracy
+# Calculate accuracy
 accuracy_knn = accuracy_score(y_test, y_pred_knn)
 
-### Calculate precision, recall, and f1 score
+# Calculate precision, recall, and f1 score
 precision_knn, recall_knn, f1_knn, _ = precision_recall_fscore_support(y_test, y_pred_knn, average='weighted')
 
-### Print the evaluation metrics
+# Print the evaluation metrics
 print("Accuracy:", accuracy_knn)
 print("Precision:", precision_knn)
 print("Recall:", recall_knn)
@@ -88,22 +88,22 @@ F1 Score: 0.7822322350312396
 ## Naive Bayes
 
 ```python
-### Create a KNN classifier with k=5
+# Create a KNN classifier with k=5
 nb_model = GaussianNB()
 
-### Train the model on your training set
+# Train the model on your training set
 nb_model.fit(X_train, y_train)
 
-### Predict the labels of your validation set
+# Predict the labels of your validation set
 y_pred_nb = nb_model.predict(X_test)
 
-### Calculate accuracy
+# Calculate accuracy
 accuracy_nb = accuracy_score(y_test, y_pred_nb)
 
-### Calculate precision, recall, and f1 score
+# Calculate precision, recall, and f1 score
 precision_nb, recall_nb, f1_nb, _ = precision_recall_fscore_support(y_test, y_pred_nb, average='weighted')
 
-### Print the evaluation metrics
+# Print the evaluation metrics
 print("Accuracy:", accuracy_nb)
 print("Precision:", precision_nb)
 print("Recall:", recall_nb)
@@ -117,22 +117,22 @@ F1 Score: 0.24116615965406896
 
 ## Support Vector Machine (SVM)
 ```python
-### Create an SVM model
+# Create an SVM model
 svm_model = SVC(kernel='rbf', C=1.0, gamma='scale', random_state=42)
 
-### Train the model on your training set
+# Train the model on your training set
 svm_model.fit(X_train, y_train)
 
-### Predict the labels of your validation set
+# Predict the labels of your validation set
 y_pred_svm = svm_model.predict(X_test)
 
-### Calculate accuracy
+# Calculate accuracy
 accuracy_svm = accuracy_score(y_test, y_pred_svm)
 
-### Calculate precision, recall, and f1 score
+# Calculate precision, recall, and f1 score
 precision_svm, recall_svm, f1_svm, _ = precision_recall_fscore_support(y_test, y_pred_svm, average='weighted')
 
-### Print the evaluation metrics
+# Print the evaluation metrics
 print("Accuracy:", accuracy_svm)
 print("Precision:", precision_svm)
 print("Recall:", recall_svm)
@@ -147,13 +147,15 @@ F1 Score: 0.8419189462167611
 Saving the trained models allows for its reuse and deployment in various applications without the need for retraining. 
 This ensures consistent and efficient utilization of the trained models.
 ```python
+# To save a model
+['./saved/svm.pkl']
+
+# To load the saved models
 joblib.dump(rf_model, './saved/random_forest.pkl')
 joblib.dump(knn_model, './saved/knn.pkl')
 joblib.dump(nb_model, './saved/naive_bayes.pkl')
 joblib.dump(svm_model, './saved/svm.pkl')
-```
-```python
-['./saved/svm.pkl']
+
 ```
 # Convolutional Neural Network (CNN)
 This section demonstrates the implementation of a Convolutional Neural Network (CNN) for the recognition of handwritten characters. CNNs have shown exceptional performance in image recognition tasks, making them well-suited for character recognition from image data.
@@ -192,19 +194,19 @@ ReduceLROnPlateau: This callback reduces the learning rate if validation loss pl
 The CNN model is trained on the training data for 20 epochs with a batch size of 32. The training progress is monitored using the validation data provided during model fitting. The callbacks are employed to control the training process and achieve the best possible model for the task.
 
 ```python
-### Compile the CNN model with categorical cross-entropy loss, the specified optimizer, and accuracy metric
+# Compile the CNN model with categorical cross-entropy loss, the specified optimizer, and accuracy metric
 cnn_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-### Create an EarlyStopping callback to monitor validation loss and stop training if it doesn't improve for 5 epochs
+# Create an EarlyStopping callback to monitor validation loss and stop training if it doesn't improve for 5 epochs
 early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1, mode='min')
 
-### Create a ModelCheckpoint callback to save the best model during training based on validation loss
+# Create a ModelCheckpoint callback to save the best model during training based on validation loss
 mcp_save = ModelCheckpoint('./saved/cnn.h5', save_best_only=True, monitor='val_loss', verbose=1, mode='auto')
 
-### Create a ReduceLROnPlateau callback to reduce the learning rate if validation loss plateaus for 3 epochs
+# Create a ReduceLROnPlateau callback to reduce the learning rate if validation loss plateaus for 3 epochs
 RLP = ReduceLROnPlateau(monitor='val_loss', patience=3, factor=0.2, min_lr=0.0001)
 
-### Model Fitting
+# Model Fitting
 history = cnn_model.fit(X_train, y_train, epochs=20, batch_size, verbose=1, validation_data=(X_test, y_test), callbacks=[mcp_save, early_stopping, RLP])
 ```
 
